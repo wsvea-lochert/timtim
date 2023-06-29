@@ -1,7 +1,5 @@
-// In App.js in a new project
-
 import * as React from 'react';
-import {View, Text, Button} from 'react-native';
+import {Button} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import HomeScreen from './screens/HomeScreen';
@@ -24,7 +22,13 @@ function App() {
           <Stack.Screen
             name="Home"
             component={HomeScreen}
-            options={{title: 'Overview'}}
+            options={{
+              headerTitle: 'TimTim',
+              // eslint-disable-next-line react/no-unstable-nested-components
+              headerRight: () => (
+                <Button onPress={() => setIsSignedIn(false)} title="Sign out" />
+              ),
+            }}
           />
         ) : (
           <Stack.Screen

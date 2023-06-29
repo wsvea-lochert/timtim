@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {View, Text, Button} from 'react-native';
 
+
 import * as Location from 'expo-location';
 
 function DetailsScreen({navigation}: any) {
@@ -29,7 +30,7 @@ function DetailsScreen({navigation}: any) {
 
   return (
     // eslint-disable-next-line react-native/no-inline-styles
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: '#8034C0'}}>
       <Text style={{fontSize: 20}}>Navigation details</Text>
       <Text style={{padding: 20}}>
         This is a debugging page. If you for some reson happend to get here, do
