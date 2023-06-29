@@ -4,48 +4,46 @@ import * as React from 'react';
 import {View, Text, Button} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import HomeScreen from './HomeScreen';
-
-function DetailsScreen({route, navigation}: any) {
-  const {age, name} = route.params;
-  return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <Text>Details Screen</Text>
-      <Text>
-        Hello {name}, you are of age: {age}
-      </Text>
-      <Button title="Go back" onPress={() => navigation.goBack()} />
-      <Button
-        title="Go back to first screen in stack"
-        onPress={() => navigation.popToTop()}
-      />
-    </View>
-  );
-}
+import HomeScreen from './screens/HomeScreen';
+import DetailsScreen from './screens/DetailsScreen';
+import LocationDetailsScreen from './screens/LocationDetailsScreen';
+import LoginScreen from './screens/LoginScreen';
 
 const Stack = createNativeStackNavigator();
 
 function App() {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [isSignedIn, setIsSignedIn] = React.useState(true);
+  const [isSignedIn, setIsSignedIn] = React.useState(false);
+
+  console.log('isSignedIn from app.tsx', isSignedIn);
 
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
-        {/* {isSignedIn ? ( */}
+      <Stack.Navigator>
+        {isSignedIn ? (
+          <Stack.Screen
+            name="Home"
+            component={HomeScreen}
+            options={{title: 'Overview'}}
+          />
+        ) : (
+          <Stack.Screen
+            name="Login"
+            component={LoginScreen}
+            initialParams={{setIsSignedIn}} // Added age initialParam
+          />
+        )}
         <Stack.Screen
           name="Details"
           component={DetailsScreen}
-          initialParams={{name: 'John', age: 20}} // Added age initialParam
+          initialParams={{name: 'William', age: 25}} // Added age initialParam
           options={{title: 'Details'}}
         />
-        {/* // ) : ( */}
         <Stack.Screen
-          name="Home"
-          component={HomeScreen}
-          options={{title: 'Overview'}}
+          name="Location"
+          component={LocationDetailsScreen}
+          options={{title: 'Location'}}
         />
-        {/* // )} */}
       </Stack.Navigator>
     </NavigationContainer>
   );
