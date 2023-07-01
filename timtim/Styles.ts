@@ -5,6 +5,7 @@ export const colors = {
   primary: '#7237B7',
   secondary: '#171D1C',
   warning: '#E56B70',
+  secondaryOutline: '#636565',
   text: {
     title: '#EAE4DE',
     filler: '#EAE4DE',

@@ -76,11 +76,11 @@ const Doughnut: React.FC<Props> = ({ week }) => {
           sectionAutoFocus
           radius={90}
           innerRadius={50}
-          innerCircleColor={'#232B5D'}
+          innerCircleColor={colors.secondary}
           showValuesAsLabels={true}
           showText
           textSize={18}
-          textColor={colors.text.placeholder}
+          textColor={colors.secondary}
           centerLabelComponent={() => {
             return (
               <View style={styles.centerLabel}>
@@ -99,19 +99,22 @@ const Doughnut: React.FC<Props> = ({ week }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#34448B',
+    backgroundColor: colors.secondary,
     paddingVertical: 100,
   },
   chartContainer: {
     margin: 20,
     padding: 16,
     borderRadius: 20,
-    backgroundColor: '#232B5D',
+    backgroundColor: colors.secondary,
+    borderColor: colors.secondaryOutline,
+    borderWidth: 1,
   },
   chartTitle: {
-    color: 'white',
+    color: colors.text.title,
     fontSize: 16,
     fontWeight: 'bold',
+    textAlign: 'center',
   },
   chartWrapper: {
     padding: 20,
@@ -128,7 +131,7 @@ const styles = StyleSheet.create({
   },
   centerLabelSubText: {
     fontSize: 14,
-    color: 'white',
+    color: colors.text.title,
   },
   legend: {
     flexDirection: 'row',
@@ -138,17 +141,16 @@ const styles = StyleSheet.create({
   legendItem: {
     flexDirection: 'row',
     alignItems: 'center',
-    width: 120,
-    margin: 10,
+    width: 100,
   },
   legendText: {
-    color: 'white',
+    color: colors.text.title,
   },
   dot: {
     height: 10,
     width: 10,
     borderRadius: 5,
-    marginRight: 10,
+    marginRight: 5,
   },
 });
 
