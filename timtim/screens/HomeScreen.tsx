@@ -1,28 +1,26 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Button } from 'react-native';
+import { View, Text, Button, ScrollView } from 'react-native';
+
+// Styles
 import { TextStyles, ViewStyles } from '../Styles';
-import * as Font from 'expo-font';
+
+// utils
 import { MessageGenerator } from '../utils/MessageGenerator';
 
+// Components
+import Divider from '../components/Divider';
+import TimeCard from '../components/TimeCard';
+
+// Hooks
+import { useFonts } from '../hooks/useFont';
+
+
 function HomeScreen({ navigation }: any) {
-  const [fontsLoaded, setFontsLoaded] = useState(false);
   const messages = new MessageGenerator();
-
-  const loadFonts = async () => {
-    try {
-      await Font.loadAsync({
-        SubjectivityBlack: require('../assets/fonts/Subjectivity-Thin.otf'),
-        SubjectivityMedium: require('../assets/fonts/Subjectivity-Medium.otf'),
-      });
-      setFontsLoaded(true);
-    } catch (error) {
-      console.error('Error loading font', error);
-    }
-  };
-
-  useEffect(() => {
-    loadFonts();
-  }, []);
+  const fontsLoaded = useFonts({
+    SubjectivityBlack: require('../assets/fonts/Subjectivity-Thin.otf'),
+    SubjectivityMedium: require('../assets/fonts/Subjectivity-Medium.otf'),
+  });
 
   return (
     <View style={[ViewStyles.container, ViewStyles.background]}>
@@ -35,6 +33,9 @@ function HomeScreen({ navigation }: any) {
             {new Date().toDateString()}
           </Text>
         )}
+        <Divider color="#ccc" thickness={0.5} />
+
+        <TimeCard time="8h 30m" total="40h" />
       </View>
 
       <Button
